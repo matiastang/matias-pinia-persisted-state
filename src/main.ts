@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 17:10:16
- * @LastEditTime: 2022-03-31 16:55:51
+ * @LastEditTime: 2022-03-31 18:58:00
  * @LastEditors: matiastang
  * @Description: In User Settings Edit
  * @FilePath: /matias-pinia-persisted-state/src/main.ts
@@ -14,7 +14,8 @@ import { createPinia } from 'pinia'
 import '@/pinia/customProperties'
 import '@/pinia/stateProperties'
 import { myPiniaPlugin } from '@/pinia/plugin'
-import { createPersistedState } from '@/pinia/piniaPersistedState'
+// import { createPersistedState } from '@/pinia/piniaPersistedState'
+import { createPersistedState } from 'matias-pinia-persisted-state'
 
 const app = createApp(App)
 

@@ -1,12 +1,14 @@
 {
     "name": "matias-pinia-persisted-state",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "pinia状态持久化",
     "main": "./dist/piniaPersistedState.umd.js",
     "files": [
-        "dist"
+        "dist",
+        "src/@types/src/pinia/piniaPersistedState.d.ts"
     ],
     "module": "./dist/piniaPersistedState.es.js",
+    "types": "./dist/@types/src/pinia/piniaPersistedState.d.ts",
     "exports": {
         ".": {
             "import": "./dist/piniaPersistedState.es.js",
@@ -78,6 +80,7 @@
         "gulp-scss": "^1.4.0",
         "inquirer": "8.2.0",
         "less": "^4.1.2",
+        "matias-pinia-persisted-state": "^0.1.0",
         "microbundle": "^0.14.2",
         "minimist": "^1.2.5",
         "object-hash": "^2.2.0",

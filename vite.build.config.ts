@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2021-12-30 15:37:18
  * @LastEditors: matiastang
- * @LastEditTime: 2022-03-31 16:04:54
+ * @LastEditTime: 2022-03-31 19:01:21
  * @FilePath: /matias-pinia-persisted-state/vite.build.config.ts
  * @Description: npm 打包上传配置
  */
@@ -26,8 +26,8 @@ export default defineConfig({
     plugins: [
         vue(),
         dts({
-            include: ['./components'],
-            outputDir: './types',
+            include: ['./src/pinia/piniaPersistedState.ts'],
+            outputDir: './src/@types',
         }),
         compressPlugin({
             ext: '.gz', //gz br

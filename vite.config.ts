@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 16:57:39
- * @LastEditTime: 2022-03-31 16:24:58
+ * @LastEditTime: 2022-03-31 18:58:26
  * @LastEditors: matiastang
  * @Description: In User Settings Edit
  * @FilePath: /matias-pinia-persisted-state/vite.config.ts
@@ -98,7 +98,7 @@ export default defineConfig({
     // 开发服务配置
     server: {
         host: '0.0.0.0',
-        port: 3001,
+        port: 3002,
         strictPort: true,
         fs: {
             strict: false,

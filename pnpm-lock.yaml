@@ -38,6 +38,7 @@ specifiers:
   gulp-scss: ^1.4.0
   inquirer: 8.2.0
   less: ^4.1.2
+  matias-pinia-persisted-state: ^0.1.0
   microbundle: ^0.14.2
   minimist: ^1.2.5
   object-hash: ^2.2.0
@@ -112,6 +113,7 @@ devDependencies:
   gulp-scss: registry.npmmirror.com/gulp-scss/1.4.0
   inquirer: 8.2.0
   less: registry.npmmirror.com/less/4.1.2
+  matias-pinia-persisted-state: registry.npmmirror.com/matias-pinia-persisted-state/0.1.0
   microbundle: registry.npmmirror.com/microbundle/0.14.2_ts-node@10.4.0
   minimist: registry.nlark.com/minimist/1.2.5
   object-hash: registry.nlark.com/object-hash/2.2.0
@@ -17515,6 +17517,14 @@ packages:
     name: map-obj
     version: 1.0.1
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  registry.npmmirror.com/matias-pinia-persisted-state/0.1.0:
+    resolution: {integrity: sha512-NccbFsilt4NiPIcgqiGJotq/qsM3BHPKCvjIUd2uOkVFjH/GdIPyzdJmWO5hywY2TbCd0/+mHfvc5msxAGYmrg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/matias-pinia-persisted-state/-/matias-pinia-persisted-state-0.1.0.tgz}
+    name: matias-pinia-persisted-state
+    version: 0.1.0
+    dependencies:
+      vue: registry.npmmirror.com/vue/3.2.20
     dev: true
 
   registry.npmmirror.com/maxmin/2.1.0:
