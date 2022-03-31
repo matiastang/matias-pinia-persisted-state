@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2021-12-30 15:37:18
  * @LastEditors: matiastang
- * @LastEditTime: 2022-03-31 19:01:21
+ * @LastEditTime: 2022-03-31 19:37:34
  * @FilePath: /matias-pinia-persisted-state/vite.build.config.ts
  * @Description: npm 打包上传配置
  */
@@ -28,6 +28,7 @@ export default defineConfig({
         dts({
             include: ['./src/pinia/piniaPersistedState.ts'],
             outputDir: './src/@types',
+            insertTypesEntry: true,
         }),
         compressPlugin({
             ext: '.gz', //gz br
@@ -67,7 +68,7 @@ export default defineConfig({
             entry: path.resolve(__dirname, './src/pinia/piniaPersistedState.ts'),
             name: 'matiasPiniaPersistedState',
             formats: ['es', 'cjs', 'umd', 'iife'],
-            fileName: (format) => `piniaPersistedState.${format}.js`,
+            fileName: (format) => `index.${format}.js`,
         },
         // 样式相关
         // cssCodeSplit: true, // 启用/禁用 CSS 代码拆分。当启用时，在异步 chunk 中导入的 CSS 将内联到异步 chunk 本身，并在其被加载时插入。如果禁用，整个项目中的所有 CSS 将被提取到一个 CSS 文件中。

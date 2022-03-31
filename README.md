@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2021-12-13 10:12:56
  * @LastEditors: matiastang
- * @LastEditTime: 2022-03-31 19:13:09
+ * @LastEditTime: 2022-03-31 19:34:23
  * @FilePath: /matias-pinia-persisted-state/README.md
  * @Description: datumwealth-vue-components
 -->
@@ -49,10 +49,14 @@ app.use(pinia)
 
 ## 版本
 
+### 0.1.2
+
+* 更新目录结构及名称
 
 ### 0.1.1
 
 * 添加类似声明文件
+
 ### 0.1.0
 
 * 实现基本的本地持久化功能
