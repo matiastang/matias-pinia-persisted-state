@@ -2,8 +2,8 @@
  * @Author: matiastang
  * @Date: 2021-12-13 10:12:56
  * @LastEditors: matiastang
- * @LastEditTime: 2021-12-29 10:55:49
- * @FilePath: /datumwealth-front-scaffold/src/views/NotFound.vue
+ * @LastEditTime: 2022-03-31 16:25:17
+ * @FilePath: /matias-pinia-persisted-state/src/views/NotFound.vue
  * @Description: 404页面
 -->
 <template>
@@ -26,8 +26,7 @@ const text = ref('404')
     align-items: center;
     .text {
         font-size: fontSize(14px);
-        @include defaultFont;
-        color: $placeholderColor;
+        color: black;
         line-height: 20px;
         text-align: center;
     }

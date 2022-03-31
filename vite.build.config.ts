@@ -2,8 +2,8 @@
  * @Author: matiastang
  * @Date: 2021-12-30 15:37:18
  * @LastEditors: matiastang
- * @LastEditTime: 2022-01-12 14:08:34
- * @FilePath: /dw-vue-components/vite.build.config.ts
+ * @LastEditTime: 2022-03-31 16:04:54
+ * @FilePath: /matias-pinia-persisted-state/vite.build.config.ts
  * @Description: npm 打包上传配置
  */
 // vite配置文件vite.config.js
@@ -64,10 +64,10 @@ export default defineConfig({
     // 库模式
     build: {
         lib: {
-            entry: path.resolve(__dirname, './components/index.ts'),
-            name: 'dwVueComponents',
+            entry: path.resolve(__dirname, './src/pinia/piniaPersistedState.ts'),
+            name: 'matiasPiniaPersistedState',
             formats: ['es', 'cjs', 'umd', 'iife'],
-            fileName: (format) => `dw-vue-components.${format}.js`,
+            fileName: (format) => `piniaPersistedState.${format}.js`,
         },
         // 样式相关
         // cssCodeSplit: true, // 启用/禁用 CSS 代码拆分。当启用时，在异步 chunk 中导入的 CSS 将内联到异步 chunk 本身，并在其被加载时插入。如果禁用，整个项目中的所有 CSS 将被提取到一个 CSS 文件中。
@@ -76,12 +76,13 @@ export default defineConfig({
         // 自定义底层的 Rollup 打包配置。这与从 Rollup 配置文件导出的选项相同，并将与 Vite 的内部 Rollup 选项合并。查看 Rollup 选项文档 获取更多细节。
         rollupOptions: {
             // 确保外部化处理那些你不想打包进库的依赖
-            external: ['vue', 'echarts', 'vue-echarts'],
+            external: ['vue', 'pinia', 'echarts', 'vue-echarts'],
             // external: ['vue'],
             output: {
                 // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
                 globals: {
                     vue: 'Vue',
+                    pinia: 'pinia',
                     echarts: 'echarts',
                     VChart: 'vue-echarts',
                 },

@@ -2,79 +2,26 @@
  * @Author: matiastang
  * @Date: 2021-12-28 19:31:46
  * @LastEditors: matiastang
- * @LastEditTime: 2022-03-21 10:58:10
- * @FilePath: /dw-vue-components/src/router/index.ts
+ * @LastEditTime: 2022-03-31 15:31:03
+ * @FilePath: /matias-pinia-persisted-state/src/router/index.ts
  * @Description: 路由
  */
-import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
-// layout
-import Layout from '@/components/layout/Layout.vue'
-// web
-import Home from '@/views/home/Home.vue'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 // test
-import DwStocksAnalysisLineTest from '@/views/test/DwStocksAnalysisLineTest.vue'
-import DwFilterSliderTest from '@/views/test/DwFilterSliderTest.vue'
-import DwFilterAreaTest from '@/views/test/DwFilterAreaTest.vue'
-import DwPortfolioTest from '@/views/test/DwPortfolioTest.vue'
+import Index from '@/views/index.vue'
 // NotFound
 import NotFound from '@/views/NotFound.vue'
 
 const routes: Array<RouteRecordRaw> = [
     {
-        // path: '/',
-        // name: 'layout',
-        // component: Layout,
-        // children: [
-        //     {
-        //         path: '',
-        //         name: 'home',
-        //         component: Home,
-        //     },
-        // ],
         path: '/',
-        name: 'home',
-        component: Home,
+        name: 'index',
+        component: Index,
         beforeEnter: (to, from) => {
             console.log(`web路由卫士：即将从${from.path}跳转到${to.path}`)
             return true
         },
     },
-    {
-        path: '/dwStocksAnalysisLine',
-        name: 'dwStocksAnalysisLine',
-        component: DwStocksAnalysisLineTest,
-        beforeEnter: (to, from) => {
-            console.log(`web路由卫士：即将从${from.path}跳转到${to.path}`)
-            return true
-        },
-    },
-    {
-        path: '/dwFilterSlider',
-        name: 'dwFilterSlider',
-        component: DwFilterSliderTest,
-        beforeEnter: (to, from) => {
-            console.log(`web路由卫士：即将从${from.path}跳转到${to.path}`)
-            return true
-        },
-    },
-    {
-        path: '/dwFilterArea',
-        name: 'dwFilterArea',
-        component: DwFilterAreaTest,
-        beforeEnter: (to, from) => {
-            console.log(`web路由卫士：即将从${from.path}跳转到${to.path}`)
-            return true
-        },
-    },
-    // {
-    //     path: '/dwPortfolioTest',
-    //     name: 'dwPortfolioTest',
-    //     component: DwPortfolioTest,
-    //     beforeEnter: (to, from) => {
-    //         console.log(`web路由卫士：即将从${from.path}跳转到${to.path}`)
-    //         return true
-    //     },
-    // },
     {
         path: '/:pathMatch(.*)*', // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下
         name: 'NotFound',
@@ -86,7 +33,6 @@ const routes: Array<RouteRecordRaw> = [
  * 创建Router
  */
 const router = createRouter({
-    // history: import.meta.env.DEV ? createWebHashHistory() : createWebHistory(),
     history: createWebHashHistory(),
     routes,
     scrollBehavior(to, from, savedPosition) {
@@ -105,23 +51,6 @@ const router = createRouter({
  * 全局前置守卫
  */
 router.beforeEach((to, from, next) => {
-    // TODO: - 登录校验
-    // import { localStorageKey, localStorageRead } from 'utils/storage/localStorage'
-    // import { DwPortfolioTest } from '@/views/test/DwPortfolioTest.vue';
-    // if (to.matched.some((record) => record.meta.requiresAuth)) {
-    //     //     // 用户token
-    //     //     const userToken = localStorageRead<string>(localStorageKey.userTokenKey)
-    //     //     if (!userToken || userToken.trim() === '') {
-    //     //         // 未登录
-    //     //         next({
-    //     //             path: '/login',
-    //     //             replace: true,
-    //     //         })
-    //     //         return
-    //     //     }
-    //     // }
-    //     next()
-    // }
     next()
 })
 

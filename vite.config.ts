@@ -1,10 +1,10 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 16:57:39
- * @LastEditTime: 2022-01-05 10:19:20
+ * @LastEditTime: 2022-03-31 16:24:58
  * @LastEditors: matiastang
  * @Description: In User Settings Edit
- * @FilePath: /dw-vue-components/vite.config.ts
+ * @FilePath: /matias-pinia-persisted-state/vite.config.ts
  */
 // vite配置文件vite.config.js
 
@@ -87,10 +87,10 @@ export default defineConfig({
         preprocessorOptions: {
             less: {},
             scss: {
-                additionalData: `
-                    @use "@/common/css/element-variables.scss" as * ;
-                    @use "@/common/css/index.scss" as * ;
-                `,
+                // additionalData: `
+                //     @use "@/common/css/element-variables.scss" as * ;
+                //     @use "@/common/css/index.scss" as * ;
+                // `,
             },
             sass: {},
         },

@@ -1,47 +1,42 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 17:10:16
- * @LastEditTime: 2022-01-12 14:35:53
+ * @LastEditTime: 2022-03-31 16:24:38
  * @LastEditors: matiastang
  * @Description: In User Settings Edit
- * @FilePath: /dw-vue-components/src/main.ts
+ * @FilePath: /matias-pinia-persisted-state/src/main.ts
  */
 import { createApp } from 'vue'
 import App from '@/App.vue'
 import router from '@/router'
-import { store, key } from '@/store'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-import ElementPlus from 'element-plus'
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import 'element-plus/theme-chalk/el-message.css'
-import 'element-plus/theme-chalk/el-message-box.css'
-// 自定义组件
-// import DwVueComponents from 'datumwealth-vue-components'
-// import DwVueComponents from 'root/dist/dw-vue-components.es.js'
-// import 'root/dist/style.css'
+// pinia状态管理
+import { createPinia } from 'pinia'
+import '@/pinia/customProperties'
+import '@/pinia/stateProperties'
+import { myPiniaPlugin } from '@/pinia/plugin'
+import { createPersistedState } from '@/pinia/piniaPersistedState'
 
 const app = createApp(App)
 
-// 导入西筹组件
-// app.use(DwVueComponents)
+// pinia
+const pinia = createPinia()
+pinia.use(
+    createPersistedState({
+        key: 'pinia-state',
+    })
+)
+pinia.use(myPiniaPlugin)
 
-// Element-plus组件
-app.use(ElementPlus, {
-    locale: zhCn,
-})
-// 状态
-app.use(store, key)
+app.use(pinia)
+
 // 路由
 app.use(router)
-// axios
-app.use(VueAxios, axios)
-app.provide('axios', app.config.globalProperties.axios) // provide 'axios'
 // 挂载
 app.mount('#app')
-// if (import.meta.env.PROD) {
-//     console.log = () => {
-//         // 线上环境屏蔽log
-//     }
-// }
-console.info(`当前Vue版本为${app.version}`)
+if (import.meta.env.PROD) {
+    console.log = () => {
+        // MARK: - 线上环境屏蔽log
+    }
+} else {
+    console.info(`当前Vue版本为${app.version}`)
+}
