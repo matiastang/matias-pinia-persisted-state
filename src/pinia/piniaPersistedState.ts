@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2022-02-09 17:17:20
  * @LastEditors: matiastang
- * @LastEditTime: 2022-03-31 15:49:00
+ * @LastEditTime: 2022-03-31 16:56:41
  * @FilePath: /matias-pinia-persisted-state/src/pinia/piniaPersistedState.ts
  * @Description: pinia状态本地存储插件
  */
@@ -31,7 +31,7 @@ let PERSISTED_STATE_KEY = key
  */
 const localStateDiff = (state: StateTree & PiniaCustomStateProperties<StateTree>) => {
     const stateName = state.stateName
-    console.log(`localStateDiff=${stateName}`)
+    // console.log(`localStateDiff=${stateName}`)
     const localState = localStorageRead<StateTree>(PERSISTED_STATE_KEY)
     if (localState === null) {
         // 初始化保存
@@ -84,22 +84,22 @@ export function piniaPersistedState(context: PiniaPluginContext) {
     const state = context.store.$state
     // 初始化检测更新
     localStateDiff(state)
-    console.log(
-        Object.keys(context.store).filter(
-            (key) => !key.startsWith('$') && !key.startsWith('_') && !key.startsWith('set')
-        )
-    )
-    console.log(Object.keys(state))
+    // console.log(
+    //     Object.keys(context.store).filter(
+    //         (key) => !key.startsWith('$') && !key.startsWith('_') && !key.startsWith('set')
+    //     )
+    // )
+    // console.log(Object.keys(state))
     context.store.$subscribe(() => {
-        console.log(`userID=${context.store.userId}`)
-        console.log(
-            Object.keys(context.store).filter(
-                (key) => !key.startsWith('$') && !key.startsWith('_') && !key.startsWith('set')
-            )
-        )
-        console.log(Object.keys(state))
+        // console.log(`userID=${context.store.userId}`)
+        // console.log(
+        //     Object.keys(context.store).filter(
+        //         (key) => !key.startsWith('$') && !key.startsWith('_') && !key.startsWith('set')
+        //     )
+        // )
+        // console.log(Object.keys(state))
         const stateName = state.stateName
-        console.log(`subscribe=${stateName}`)
+        // console.log(`subscribe=${stateName}`)
         const localState = localStorageRead<StateTree>(PERSISTED_STATE_KEY)
         if (localState === null) {
             // 初始化保存

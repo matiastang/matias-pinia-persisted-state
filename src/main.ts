@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 17:10:16
- * @LastEditTime: 2022-03-31 16:24:38
+ * @LastEditTime: 2022-03-31 16:55:51
  * @LastEditors: matiastang
  * @Description: In User Settings Edit
  * @FilePath: /matias-pinia-persisted-state/src/main.ts
@@ -22,7 +22,7 @@ const app = createApp(App)
 const pinia = createPinia()
 pinia.use(
     createPersistedState({
-        key: 'pinia-state',
+        key: 'pinia-key',
     })
 )
 pinia.use(myPiniaPlugin)
