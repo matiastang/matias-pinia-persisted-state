@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2021-12-13 10:12:56
  * @LastEditors: matiastang
- * @LastEditTime: 2022-03-31 19:34:23
+ * @LastEditTime: 2022-04-01 10:43:56
  * @FilePath: /matias-pinia-persisted-state/README.md
  * @Description: datumwealth-vue-components
 -->
@@ -48,6 +48,10 @@ app.use(pinia)
 > `*.vue`文件中使用
 
 ## 版本
+
+### 0.1.3
+
+* 更新`package.json`的导出目录
 
 ### 0.1.2
 
