@@ -38,7 +38,7 @@ specifiers:
   gulp-scss: ^1.4.0
   inquirer: 8.2.0
   less: ^4.1.2
-  matias-pinia-persisted-state: ^0.1.1
+  matias-pinia-persisted-state: ^0.1.2
   microbundle: ^0.14.2
   minimist: ^1.2.5
   object-hash: ^2.2.0
@@ -113,7 +113,7 @@ devDependencies:
   gulp-scss: registry.npmmirror.com/gulp-scss/1.4.0
   inquirer: 8.2.0
   less: registry.npmmirror.com/less/4.1.2
-  matias-pinia-persisted-state: registry.npmmirror.com/matias-pinia-persisted-state/0.1.1
+  matias-pinia-persisted-state: registry.npmmirror.com/matias-pinia-persisted-state/0.1.2
   microbundle: registry.npmmirror.com/microbundle/0.14.2_ts-node@10.4.0
   minimist: registry.nlark.com/minimist/1.2.5
   object-hash: registry.nlark.com/object-hash/2.2.0
@@ -13693,7 +13693,7 @@ packages:
     version: 2.2.3
     dependencies:
       ejs: registry.npmmirror.com/ejs/3.1.6
-      json5: registry.npmmirror.com/json5/2.2.0
+      json5: registry.npmmirror.com/json5/2.2.1
       magic-string: registry.nlark.com/magic-string/0.25.7
       string.prototype.matchall: registry.npmmirror.com/string.prototype.matchall/4.0.6
     dev: true
@@ -17246,16 +17246,6 @@ packages:
       minimist: registry.npmmirror.com/minimist/1.2.5
     dev: true
 
-  registry.npmmirror.com/json5/2.2.0:
-    resolution: {integrity: sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/json5/-/json5-2.2.0.tgz}
-    name: json5
-    version: 2.2.0
-    engines: {node: '>=6'}
-    hasBin: true
-    dependencies:
-      minimist: registry.npmmirror.com/minimist/1.2.5
-    dev: true
-
   registry.npmmirror.com/json5/2.2.1:
     resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/json5/-/json5-2.2.1.tgz}
     name: json5
@@ -17263,7 +17253,6 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
     dev: true
-    optional: true
 
   registry.npmmirror.com/jsprim/1.4.1:
     resolution: {integrity: sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsprim/download/jsprim-1.4.1.tgz}
@@ -17528,10 +17517,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  registry.npmmirror.com/matias-pinia-persisted-state/0.1.1:
-    resolution: {integrity: sha512-MjMAfv/F0KCk5IQZFhj3IwKWS7CfBEoXnfKbD4S2J5Aqu0nWaWZaCjJQ2JI0C65qjz2MeVkMyLnkpnRCZWvfeg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/matias-pinia-persisted-state/-/matias-pinia-persisted-state-0.1.1.tgz}
+  registry.npmmirror.com/matias-pinia-persisted-state/0.1.2:
+    resolution: {integrity: sha512-Q5BH65/EWC8AqPwpJS9XCO0FoGtwFYzV2h18CWcbJGWjKkLDQSA1ivtJ82+kYiZHsEoiQRvY2jukTwdd/Lgg/g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/matias-pinia-persisted-state/-/matias-pinia-persisted-state-0.1.2.tgz}
     name: matias-pinia-persisted-state
-    version: 0.1.1
+    version: 0.1.2
     dependencies:
       vue: registry.npmmirror.com/vue/3.2.20
     dev: true
