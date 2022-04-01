@@ -1,13 +1,13 @@
 {
     "name": "matias-pinia-persisted-state",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "pinia状态持久化",
     "main": "./dist/index.umd.js",
     "files": [
         "dist"
     ],
     "module": "./dist/index.es.js",
-    "types": "./dist/index.d.ts",
+    "types": "./dist/piniaPersistedState.d.ts",
     "exports": {
         ".": {
             "import": "./dist/index.es.js",
