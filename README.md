@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2021-12-13 10:12:56
  * @LastEditors: matiastang
- * @LastEditTime: 2022-04-01 10:43:56
+ * @LastEditTime: 2022-04-02 14:10:15
  * @FilePath: /matias-pinia-persisted-state/README.md
  * @Description: datumwealth-vue-components
 -->
@@ -23,7 +23,7 @@
 * `npm`导入
 > $ npm install -D matias-pinia-persisted-state
 
-1. 引用
+2. 引用
 
 两种引入方式如下（以`DwWechatLogin`组件举例）：
 * 单个组件引入
@@ -45,9 +45,31 @@ app.use(pinia)
 ```
 * `PERSISTED_STATE_KEY`为本地持久化的`key`.默认是`pinia-state`可以在`createPersistedState`方法中传递自定义的`key`。
 
-> `*.vue`文件中使用
+3. 使用
+`state`类型这种**必须**要包含`stateName`字段，用于命名本地缓存的`key`。
+```ts
+import { defineStore } from 'pinia'
+
+interface State {
+    stateName: string
+}
+
+export const useTestStore = defineStore('pinia/test', {
+    state: (): State => ({
+        stateName: 'test',
+    }),
+})
+```
 
 ## 版本
+
+### 0.1.5
+
+* 代码压缩
+
+### 0.1.4
+
+* 更新类型文件导出
 
 ### 0.1.3
 
