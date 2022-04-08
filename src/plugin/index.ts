@@ -2,13 +2,14 @@
  * @Author: matiastang
  * @Date: 2022-02-09 17:17:20
  * @LastEditors: matiastang
- * @LastEditTime: 2022-04-08 17:31:13
+ * @LastEditTime: 2022-04-08 18:50:08
  * @FilePath: /matias-pinia-persisted-state/src/plugin/index.ts
  * @Description: pinia状态本地存储插件
  */
 import { PiniaPluginContext, StateTree, PiniaCustomStateProperties } from 'pinia'
 import { PINIA_LOCAL_STORAGE_KEY as key, localStorageWrite, localStorageRead } from './localStorage'
 
+const NPMLINK = 'https://www.npmjs.com/package/matias-pinia-persisted-state'
 /**
  * options类型
  */
@@ -27,6 +28,10 @@ let PERSISTED_STATE_KEY = key
  */
 const localStateDiff = (state: StateTree & PiniaCustomStateProperties<StateTree>) => {
     const stateName = state.stateName
+    if (typeof stateName === 'undefined') {
+        console.error('state必须有stateName熟悉，详情查看：', NPMLINK)
+        return
+    }
     // console.log(`localStateDiff=${stateName}`)
     const localState = localStorageRead<StateTree>(PERSISTED_STATE_KEY)
     if (localState === null) {
@@ -95,6 +100,10 @@ export function piniaPersistedState(context: PiniaPluginContext) {
         // )
         // console.log(Object.keys(state))
         const stateName = state.stateName
+        if (typeof stateName === 'undefined') {
+            console.error('state必须有stateName熟悉，详情查看：', NPMLINK)
+            return
+        }
         // console.log(`subscribe=${stateName}`)
         const localState = localStorageRead<StateTree>(PERSISTED_STATE_KEY)
         if (localState === null) {
