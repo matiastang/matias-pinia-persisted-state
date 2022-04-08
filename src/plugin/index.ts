@@ -2,16 +2,12 @@
  * @Author: matiastang
  * @Date: 2022-02-09 17:17:20
  * @LastEditors: matiastang
- * @LastEditTime: 2022-03-31 16:56:41
- * @FilePath: /matias-pinia-persisted-state/src/pinia/piniaPersistedState.ts
+ * @LastEditTime: 2022-04-08 17:31:13
+ * @FilePath: /matias-pinia-persisted-state/src/plugin/index.ts
  * @Description: pinia状态本地存储插件
  */
 import { PiniaPluginContext, StateTree, PiniaCustomStateProperties } from 'pinia'
-import {
-    PINIA_LOCAL_STORAGE_KEY as key,
-    localStorageWrite,
-    localStorageRead,
-} from './piniaLocalStorage'
+import { PINIA_LOCAL_STORAGE_KEY as key, localStorageWrite, localStorageRead } from './localStorage'
 
 /**
  * options类型

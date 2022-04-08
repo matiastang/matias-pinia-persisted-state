@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2021-12-13 10:12:56
  * @LastEditors: matiastang
- * @LastEditTime: 2022-04-02 14:10:15
+ * @LastEditTime: 2022-04-08 18:25:38
  * @FilePath: /matias-pinia-persisted-state/README.md
  * @Description: datumwealth-vue-components
 -->
@@ -63,9 +63,13 @@ export const useTestStore = defineStore('pinia/test', {
 
 ## 版本
 
+### 0.1.6
+
+* 开启代码压缩
+
 ### 0.1.5
 
-* 代码压缩
+* 目录结构调整
 
 ### 0.1.4
 

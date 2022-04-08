@@ -1,5 +1,14 @@
 {
     "compilerOptions": {
+        // 开启类型定义文件生成的开关
+        "noEmit": false,
+        "declaration": true,
+        // 类型定义文件生成的目标目录
+        "outDir": "types",
+        // 只emit类型定义文件，而不emit其他诸如source-map等
+        "emitDeclarationOnly": true,
+        // 社区也有相关的vite插件，插件地址。实现原理是使用ts-morph生成相应的类型申明文件。感兴趣的读者可以自行尝试。
+
         // "incremental": true, // TS编译器在第一次编译之后会生成一个存储编译信息的文件，第二次编译会在第一次的基础上进行增量编译，可以提高编译的速度
         // "tsBuildInfoFile": "./buildFile", // 增量编译文件的存储位置
         "diagnostics": true, // 打印诊断信息
@@ -70,7 +79,7 @@
         "lib": ["esnext", "es2020", "dom", "dom.iterable", "scripthost"],
         "typeRoots": ["shims-vue.d.ts", "node_modules/@types"]// 声明文件目录，默认时node_modules/@types
     },
-    "files": ["shims-vue.d.ts", "./src/common/extension/string/stringExtension.d.ts", "node_modules/datumwealth-vue-components/global.d.ts"],
+    "files": ["shims-vue.d.ts"],
     "include": [
         "src/**/*.d.ts",
         "src/**/*.ts",

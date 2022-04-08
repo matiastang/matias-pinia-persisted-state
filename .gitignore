@@ -28,3 +28,5 @@ pnpm-lock.yaml
 scripts/
 
 *.sh
+# build文件
+build*

@@ -1,3 +1,11 @@
+/*
+ * @Author: matiastang
+ * @Date: 2021-12-24 13:46:01
+ * @LastEditors: matiastang
+ * @LastEditTime: 2022-04-08 17:46:23
+ * @FilePath: /matias-pinia-persisted-state/loadenv.ts
+ * @Description: 读取配置文件
+ */
 import { existsSync, readFileSync } from 'fs'
 
 /** 读取环境变量文件 */
