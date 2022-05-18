@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2021-12-13 10:12:56
  * @LastEditors: matiastang
- * @LastEditTime: 2022-04-08 18:51:28
+ * @LastEditTime: 2022-05-18 17:32:36
  * @FilePath: /matias-pinia-persisted-state/README.md
  * @Description: datumwealth-vue-components
 -->
@@ -61,6 +61,12 @@ export const useTestStore = defineStore('pinia/test', {
 ```
 
 ## 版本
+
+### 0.1.8
+
+* fix
+  
+1. `store.$subscribe`添加`detached:true`。
 
 ### 0.1.7
 

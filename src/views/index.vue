@@ -2,12 +2,12 @@
  * @Author: matiastang
  * @Date: 2022-03-31 15:28:39
  * @LastEditors: matiastang
- * @LastEditTime: 2022-03-31 15:39:39
+ * @LastEditTime: 2022-05-18 16:59:33
  * @FilePath: /matias-pinia-persisted-state/src/views/index.vue
  * @Description: 框架测试
 -->
 <template>
-    <div>框架测试</div>
+    <div @click="clickAction">框架测试</div>
     <input v-model="inputText" @change="inputChange" />
 </template>
 <script setup lang="ts">
@@ -38,6 +38,15 @@ watch(
 )
 const inputChange = (payload: Event) => {
     console.log(payload)
+}
+
+const dataList = authStore.$state.user
+
+const clickAction = () => {
+    dataList.list.push({
+        code: `code${dataList.list.length}`,
+        name: 'name',
+    })
 }
 </script>
 <style lang="scss" scoped></style>

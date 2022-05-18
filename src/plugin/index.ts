@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2022-02-09 17:17:20
  * @LastEditors: matiastang
- * @LastEditTime: 2022-04-08 18:50:08
+ * @LastEditTime: 2022-05-18 17:28:04
  * @FilePath: /matias-pinia-persisted-state/src/plugin/index.ts
  * @Description: pinia状态本地存储插件
  */
@@ -91,34 +91,39 @@ export function piniaPersistedState(context: PiniaPluginContext) {
     //     )
     // )
     // console.log(Object.keys(state))
-    context.store.$subscribe(() => {
-        // console.log(`userID=${context.store.userId}`)
-        // console.log(
-        //     Object.keys(context.store).filter(
-        //         (key) => !key.startsWith('$') && !key.startsWith('_') && !key.startsWith('set')
-        //     )
-        // )
-        // console.log(Object.keys(state))
-        const stateName = state.stateName
-        if (typeof stateName === 'undefined') {
-            console.error('state必须有stateName熟悉，详情查看：', NPMLINK)
-            return
+    context.store.$subscribe(
+        () => {
+            // console.log(`userID=${context.store.userId}`)
+            // console.log(
+            //     Object.keys(context.store).filter(
+            //         (key) => !key.startsWith('$') && !key.startsWith('_') && !key.startsWith('set')
+            //     )
+            // )
+            // console.log(Object.keys(state))
+            const stateName = state.stateName
+            if (typeof stateName === 'undefined') {
+                console.error('state必须有stateName熟悉，详情查看：', NPMLINK)
+                return
+            }
+            // console.log(`subscribe=${stateName}`)
+            const localState = localStorageRead<StateTree>(PERSISTED_STATE_KEY)
+            if (localState === null) {
+                // 初始化保存
+                localStorageWrite(PERSISTED_STATE_KEY, {
+                    [stateName]: state,
+                })
+                return
+            }
+            localState[stateName] = state
+            // 直接更新存储状态
+            // FIXME: - 非状态更新也会调用，可能会有性能问题
+            // TODO: - 挂载到context.store的熟悉并未实现持久化
+            localStorageWrite(PERSISTED_STATE_KEY, localState)
+        },
+        {
+            detached: true,
         }
-        // console.log(`subscribe=${stateName}`)
-        const localState = localStorageRead<StateTree>(PERSISTED_STATE_KEY)
-        if (localState === null) {
-            // 初始化保存
-            localStorageWrite(PERSISTED_STATE_KEY, {
-                [stateName]: state,
-            })
-            return
-        }
-        localState[stateName] = state
-        // 直接更新存储状态
-        // FIXME: - 非状态更新也会调用，可能会有性能问题
-        // TODO: - 挂载到context.store的熟悉并未实现持久化
-        localStorageWrite(PERSISTED_STATE_KEY, localState)
-    })
+    )
 }
 
 export { PERSISTED_STATE_KEY }
