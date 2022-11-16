@@ -1,6 +1,6 @@
 {
     "name": "matias-pinia-persisted-state",
-    "version": "0.1.8",
+    "version": "0.2.0",
     "description": "pinia状态持久化",
     "main": "./dist/index.umd.js",
     "files": [
@@ -43,7 +43,7 @@
     },
     "homepage": "https://github.com/matiastang/vue-scaffold#readme",
     "dependencies": {
-        "pinia": "^2.0.13"
+        "pinia": "^2.0.23"
     },
     "devDependencies": {
         "@element-plus/icons": "^0.0.11",

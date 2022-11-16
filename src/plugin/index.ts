@@ -2,50 +2,77 @@
  * @Author: matiastang
  * @Date: 2022-02-09 17:17:20
  * @LastEditors: matiastang
- * @LastEditTime: 2022-05-18 17:28:04
+ * @LastEditTime: 2022-11-16 18:16:38
  * @FilePath: /matias-pinia-persisted-state/src/plugin/index.ts
  * @Description: pinia状态本地存储插件
  */
 import { PiniaPluginContext, StateTree, PiniaCustomStateProperties } from 'pinia'
-import { PINIA_LOCAL_STORAGE_KEY as key, localStorageWrite, localStorageRead } from './localStorage'
+import { localStorageWrite, localStorageRead } from './localStorage'
 
 const NPMLINK = 'https://www.npmjs.com/package/matias-pinia-persisted-state'
+const PINIA_STORAGE_KEY = 'pinia-key'
+const PINIA_STORAGE_CUSTOM_KEY = 'pinia-custom-key'
+
 /**
- * options类型
+ * 状态持久化config类型
  */
-interface PersistedStateOptions {
-    key: string
+interface PersistedStateConfig {
+    /**
+     * 保存pinia的key
+     */
+    key?: string
+    /**
+     * 保存pinia custom properties的key
+     */
+    customKey?: string
+    /**
+     * 获取custom properties key 的过滤函数
+     */
+    customFilterKey?: (key: string) => boolean
 }
 
 /**
- * 持久化key
+ * custom properties 类型
  */
-let PERSISTED_STATE_KEY = key
+type CustomPropertiesType = {
+    [key: string]: any
+}
+
+/**
+ * 状态持久化config
+ */
+export let persistedConfig: PersistedStateConfig = {
+    key: PINIA_STORAGE_KEY,
+    customKey: PINIA_STORAGE_CUSTOM_KEY,
+    customFilterKey: (key: string) => {
+        return !key.startsWith('$') && !key.startsWith('_') && !key.startsWith('set')
+    },
+}
 
 /**
  * 本地存储数据差异化检测，更新
- * @returns Void
+ * @param state
+ * @param key
+ * @returns
  */
-const localStateDiff = (state: StateTree & PiniaCustomStateProperties<StateTree>) => {
-    const stateName = state.stateName
-    if (typeof stateName === 'undefined') {
-        console.error('state必须有stateName熟悉，详情查看：', NPMLINK)
-        return
-    }
-    // console.log(`localStateDiff=${stateName}`)
-    const localState = localStorageRead<StateTree>(PERSISTED_STATE_KEY)
+const _localStateDiff = (
+    state: StateTree & PiniaCustomStateProperties<StateTree>,
+    stateKey: string
+) => {
+    const persistedKey = persistedConfig.key
+    const localState = localStorageRead<StateTree>(persistedKey)
     if (localState === null) {
         // 初始化保存
-        localStorageWrite(PERSISTED_STATE_KEY, {
-            [stateName]: state,
+        localStorageWrite(persistedKey, {
+            [stateKey]: state,
         })
         return
     }
-    const localNameState = localState[stateName]
+    const localNameState = localState[stateKey]
     if (localNameState === undefined) {
-        localState[stateName] = state
+        localState[stateKey] = state
         // 差异保存
-        localStorageWrite(PERSISTED_STATE_KEY, localState)
+        localStorageWrite(persistedKey, localState)
         return
     }
     // 差异查找更新
@@ -60,21 +87,36 @@ const localStateDiff = (state: StateTree & PiniaCustomStateProperties<StateTree>
             }
         }
     }
-    localState[stateName] = state
+    localState[stateKey] = state
     // 差异保存
-    localStorageWrite(PERSISTED_STATE_KEY, localState)
+    localStorageWrite(persistedKey, localState)
 }
 
 /**
- * 带可选参数创建
- * @param options
+ * 获取custom properties
+ * @param context
  * @returns
  */
-export function createPersistedState(options: PersistedStateOptions | undefined = undefined) {
-    if (options) {
-        PERSISTED_STATE_KEY = options.key
+const _contextCustomProperties = (context: PiniaPluginContext) => {
+    const store = context.store
+    const stateKeys = Object.keys(store.$state)
+    const customKeys = Object.keys(store).filter((key) => {
+        return persistedConfig.customFilterKey(key)
+    })
+    let customProperties = {} as CustomPropertiesType
+    for (let i = 0; i < customKeys.length; i++) {
+        const item = customKeys[i]
+        if (!stateKeys.includes(item)) {
+            if (Object.keys(customProperties).length <= 0) {
+                customProperties = {
+                    [item]: store[item],
+                }
+            } else {
+                customProperties[item] = store[item]
+            }
+        }
     }
-    return piniaPersistedState
+    return customProperties
 }
 
 /**
@@ -82,43 +124,55 @@ export function createPersistedState(options: PersistedStateOptions | undefined 
  * @param context pinia context
  */
 export function piniaPersistedState(context: PiniaPluginContext) {
+    /**
+     * FIXME: - 不能检测到customProperties和stateProperties，估计是该方法的调用在customProperties和stateProperties挂载之前
+     */
+    const persistedKey = persistedConfig.key
+    const customKey = persistedConfig.customKey
     const state = context.store.$state
+    const stateKey = context.store.$id
+    if (stateKey.trim() === '') {
+        console.error('store id 不能为空，详情查看：', NPMLINK)
+        return
+    }
     // 初始化检测更新
-    localStateDiff(state)
-    // console.log(
-    //     Object.keys(context.store).filter(
-    //         (key) => !key.startsWith('$') && !key.startsWith('_') && !key.startsWith('set')
-    //     )
-    // )
-    // console.log(Object.keys(state))
+    _localStateDiff(state, stateKey)
     context.store.$subscribe(
         () => {
-            // console.log(`userID=${context.store.userId}`)
-            // console.log(
-            //     Object.keys(context.store).filter(
-            //         (key) => !key.startsWith('$') && !key.startsWith('_') && !key.startsWith('set')
-            //     )
-            // )
-            // console.log(Object.keys(state))
-            const stateName = state.stateName
-            if (typeof stateName === 'undefined') {
-                console.error('state必须有stateName熟悉，详情查看：', NPMLINK)
-                return
-            }
-            // console.log(`subscribe=${stateName}`)
-            const localState = localStorageRead<StateTree>(PERSISTED_STATE_KEY)
+            console.log('subscribe', stateKey)
+            const customProperties = _contextCustomProperties(context)
+            const localState = localStorageRead<StateTree>(persistedKey)
             if (localState === null) {
                 // 初始化保存
-                localStorageWrite(PERSISTED_STATE_KEY, {
-                    [stateName]: state,
-                })
+                if (Object.keys(customProperties).length > 0) {
+                    localStorageWrite(persistedKey, {
+                        [customKey]: {
+                            ...customProperties,
+                        },
+                        [stateKey]: state,
+                    })
+                } else {
+                    localStorageWrite(persistedKey, {
+                        [stateKey]: state,
+                    })
+                }
                 return
             }
-            localState[stateName] = state
+            const localCustom = localState[customKey]
+            if (localCustom) {
+                localState[customKey] = {
+                    ...localCustom,
+                    ...customProperties,
+                }
+            } else {
+                localState[customKey] = {
+                    ...customProperties,
+                }
+            }
+            localState[stateKey] = state
             // 直接更新存储状态
             // FIXME: - 非状态更新也会调用，可能会有性能问题
-            // TODO: - 挂载到context.store的熟悉并未实现持久化
-            localStorageWrite(PERSISTED_STATE_KEY, localState)
+            localStorageWrite(persistedKey, localState)
         },
         {
             detached: true,
@@ -126,4 +180,17 @@ export function piniaPersistedState(context: PiniaPluginContext) {
     )
 }
 
-export { PERSISTED_STATE_KEY }
+/**
+ * 带配置创建pinia state 本地存储
+ * @param config
+ * @returns
+ */
+export function createPersistedState(config?: PersistedStateConfig) {
+    if (config) {
+        persistedConfig = {
+            ...persistedConfig,
+            ...config,
+        }
+    }
+    return piniaPersistedState
+}

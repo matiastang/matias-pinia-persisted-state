@@ -2,9 +2,9 @@
  * @Author: matiastang
  * @Date: 2022-02-09 16:28:32
  * @LastEditors: matiastang
- * @LastEditTime: 2022-02-09 16:36:48
- * @FilePath: /datumwealth-front-scaffold/src/pinia/customProperties.ts
- * @Description: store数据
+ * @LastEditTime: 2022-11-16 16:50:07
+ * @FilePath: /matias-pinia-persisted-state/src/pinia/customProperties.ts
+ * @Description: store的状态，使用authStore.userId直接访问
  */
 import 'pinia'
 import { Ref } from 'vue'
