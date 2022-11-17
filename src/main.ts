@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 17:10:16
- * @LastEditTime: 2022-11-16 19:43:28
+ * @LastEditTime: 2022-11-17 10:24:06
  * @LastEditors: matiastang
  * @Description: In User Settings Edit
  * @FilePath: /matias-pinia-persisted-state/src/main.ts
@@ -22,7 +22,6 @@ const app = createApp(App)
 // pinia
 const pinia = createPinia()
 
-pinia.use(myPiniaPlugin)
 // 便捷使用
 pinia.use(piniaPersistedState)
 // 带配置使用
@@ -33,7 +32,7 @@ pinia.use(piniaPersistedState)
 // )
 // 查看配置、
 console.log(persistedConfig)
-// pinia.use(myPiniaPlugin)
+pinia.use(myPiniaPlugin)
 
 app.use(pinia)
 

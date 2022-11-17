@@ -2,20 +2,18 @@
  * @Author: matiastang
  * @Date: 2022-03-18 17:27:11
  * @LastEditors: matiastang
- * @LastEditTime: 2022-04-11 14:16:13
+ * @LastEditTime: 2022-11-17 09:58:57
  * @FilePath: /matias-pinia-persisted-state/src/pinia/useTest.ts
  * @Description:
  */
 import { defineStore } from 'pinia'
 
 interface State {
-    stateName: string
     data: string
 }
 
-export const useTestStore = defineStore('auth/test', {
+export const useTestStore = defineStore('test', {
     state: (): State => ({
-        stateName: 'test',
         data: 'data',
     }),
     actions: {

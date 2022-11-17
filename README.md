@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2021-12-13 10:12:56
  * @LastEditors: matiastang
- * @LastEditTime: 2022-11-16 20:07:19
+ * @LastEditTime: 2022-11-17 10:26:28
  * @FilePath: /matias-pinia-persisted-state/README.md
  * @Description: datumwealth-vue-components
 -->
@@ -72,21 +72,27 @@ app.use(pinia)
 3. 使用
 
 完成引入后，则`pinia`的所有状态及更新都将保存到`storage`中。
-**注意**`custom properties`和`state properties`在初始化的时候无法获取到，需要更新后才会同步到`storage`
+**注意**`custom properties`和`state properties`在赋值的时候才会同步到`storage`
 
-* 声明`authUser Store`
+* 声明`authUser Store`，带有初始化值。
 ```ts
 import { defineStore } from 'pinia'
 
 interface State {
     name: string
+    age: string
 }
 
-export const useAuthUserStore = defineStore('authUser', {
+export const useAuthUserStore = defineStore('user', {
     state: (): State => ({
-        name: 'matias',
+        name: 'name',
+        age: 'age',
     }),
-    ...
+    actions: {
+        setName(name: string) {
+            this.name = name
+        },
+    },
 })
 ```
 * 声明`custom properties`
@@ -120,38 +126,53 @@ declare module 'pinia' {
 * 使用并查看状态
 ```ts
 import { useAuthUserStore } from '@/pinia/useAuthUserStore'
+import { useTestStore } from '@/pinia/useTest'
 
-const authStore = useAuthUserStore()
-
+const userStore = useAuthUserStore()
+const testStore = useTestStore()
 // 输出
 console.log(
-    authStore.simpleNumber,
-    authStore.userId,
-    authStore.$state.hello,
-    authStore.$state.name,
+    userStore.simpleNumber,
+    userStore.userId,
+    userStore.$state.hello,
+    testStore.simpleNumber,
+    testStore.userId,
+    testStore.$state.hello
 )
 ```
 * 查看`storage`中保存的`pinia-key`数据**如果配置了key则是对应的数据**
 ```json
 {
-    authUser: { name: "matias"}
+    test: {data: "data"}
+    user: {name: "name", age: "age"}
 }
 ```
-`custom properties`和`state properties`中的数据并没有保存下来。对`pinia`中的数据做一次更改则可查看到数据
+**说明**`custom properties`和`state properties`中只是申明。所有需要赋值之后才能看到数据。
+```ts
+userStore.userId = '001'
+userStore.simpleNumber = 99
+userStore.$state.hello = 'hello user'
+
+testStore.userId = '002'
+testStore.simpleNumber = 100
+testStore.$state.hello = 'hello test'
+```
 ```json
 {
-    authUser: { name: "matias", hello: "hello pinia"}
-    pinia-custom-key: {userId: "data", simpleNumber: 100}
+    pinia-custom-key: {userId: "001", simpleNumber: 99}
+    test: {data: "data", hello: "hello test"}
+    user: {name: "name", age: "age", hello: "hello user"}
 }
 ```
-* 可以自己写一个插件，或者把其他会更新状态的插件放到使用`matias-pinia-persisted-state`该插件之后，将更快保存`custom properties`和`state properties`中的数据。
+* 可以看到`userId`和`simpleNumber`这种`custom properties`使用`userStore`和`testStore`更新都是一样的，可以理解为`pinia`的全局变量。而`hello`这种共有`state properties`需要每个`store`自己控制。使用`context.store.$state.hello`可以修改所有`store`的`hello`熟悉。因此可以自己写一个插件放到`matias-pinia-persisted-state`该插件之后，全量初始或更新`state properties`中的数据。
 ```ts
 const userID = ref('000001')
 const hello = ref('hello pinia')
 // 自定义基础插件，更新状态
 export function myPiniaPlugin(context: PiniaPluginContext) {
+    // 当然插件里面也可以处理custom properties
     context.store.userId = userID
-    context.store.simpleNumber = 100
+    // 赋值
     context.store.$state.hello = hello
 }
 ```
@@ -175,13 +196,15 @@ pinia.use(myPiniaPlugin)
 
 app.use(pinia)
 ```
-将最最开始就执行一次更新
+`storage`中的数据将更新。
 ```json
 {
-    authUser: { name: "matias", hello: "hello pinia"}
-    pinia-custom-key: {userId: "data", simpleNumber: 100}
+    pinia-custom-key: {userId: "002", simpleNumber: 99}
+    test: {data: "data", hello: "hello pinia"}
+    user: {name: "name", age: "age", hello: "hello pinia"}
 }
 ```
+有点儿说多了，只需要知道`matias-pinia-persisted-state`将持久化存储`pinia`中的数据就行。
 ## 版本
 
 ### 0.2.0
