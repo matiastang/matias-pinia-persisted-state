@@ -4,9 +4,9 @@
         "declaration": true,
         "declarationDir": "buildTypes",
         "outDir": "buildJs",
-        "rootDir": ".",
+        "rootDir": "./",
     },
-    "include": ["**/*"],
+    "include": ["./index.ts"],
     "exclude": ["buildJs","buildTypes"]
 }
 /*

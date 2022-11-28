@@ -2,16 +2,27 @@
  * @Author: matiastang
  * @Date: 2022-02-09 17:17:20
  * @LastEditors: matiastang
- * @LastEditTime: 2022-11-16 18:16:38
+ * @LastEditTime: 2022-11-28 22:01:32
  * @FilePath: /matias-pinia-persisted-state/src/plugin/index.ts
  * @Description: pinia状态本地存储插件
  */
-import { PiniaPluginContext, StateTree, PiniaCustomStateProperties } from 'pinia'
-import { localStorageWrite, localStorageRead } from './localStorage'
+import type { PiniaPluginContext, PiniaCustomStateProperties, StateTree } from 'pinia'
+import { localStorageRead, localStorageWrite } from 'matias-storage'
 
 const NPMLINK = 'https://www.npmjs.com/package/matias-pinia-persisted-state'
 const PINIA_STORAGE_KEY = 'pinia-key'
 const PINIA_STORAGE_CUSTOM_KEY = 'pinia-custom-key'
+
+/**
+ * 需要对MapStoresCustomization类型进行扩展，不然将报错
+ * Property 'suffix' does not exist on type 'MapStoresCustomization'.
+ * [Id in `${Ids}${MapStoresCustomization extends Record<'suffix', string> ? MapStoresCustomization['suffix'] : 'Store'}`]: () => Store<Id extends `${infer RealId}${MapStoresCustomization extends Record<'suffix', string> ? MapStoresCustomization['suffix'] : 'Store'}` ? RealId : string, State, Getters, Actions>;
+ */
+declare module 'pinia' {
+    export interface MapStoresCustomization {
+        suffix: string
+    }
+}
 
 /**
  * 状态持久化config类型
@@ -35,7 +46,7 @@ interface PersistedStateConfig {
  * custom properties 类型
  */
 type CustomPropertiesType = {
-    [key: string]: any
+    [key: string]: StateTree & PiniaCustomStateProperties<StateTree>
 }
 
 /**
@@ -60,7 +71,9 @@ const _localStateDiff = (
     stateKey: string
 ) => {
     const persistedKey = persistedConfig.key
-    const localState = localStorageRead<StateTree>(persistedKey)
+    const localState = localStorageRead<StateTree & PiniaCustomStateProperties<StateTree>>(
+        persistedKey
+    )
     if (localState === null) {
         // 初始化保存
         localStorageWrite(persistedKey, {
@@ -125,7 +138,7 @@ const _contextCustomProperties = (context: PiniaPluginContext) => {
  */
 export function piniaPersistedState(context: PiniaPluginContext) {
     /**
-     * FIXME: - 不能检测到customProperties和stateProperties，估计是该方法的调用在customProperties和stateProperties挂载之前
+     * FIXME: - 不能检测到customProperties和stateProperties，在调用customProperties和stateProperties之前
      */
     const persistedKey = persistedConfig.key
     const customKey = persistedConfig.customKey
@@ -139,9 +152,11 @@ export function piniaPersistedState(context: PiniaPluginContext) {
     _localStateDiff(state, stateKey)
     context.store.$subscribe(
         () => {
-            console.log('subscribe', stateKey)
+            // console.log('subscribe', stateKey)
             const customProperties = _contextCustomProperties(context)
-            const localState = localStorageRead<StateTree>(persistedKey)
+            const localState = localStorageRead<StateTree & PiniaCustomStateProperties<StateTree>>(
+                persistedKey
+            )
             if (localState === null) {
                 // 初始化保存
                 if (Object.keys(customProperties).length > 0) {
@@ -194,3 +209,5 @@ export function createPersistedState(config?: PersistedStateConfig) {
     }
     return piniaPersistedState
 }
+
+export default piniaPersistedState

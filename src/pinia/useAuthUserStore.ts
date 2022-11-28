@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2022-02-09 15:30:53
  * @LastEditors: matiastang
- * @LastEditTime: 2022-11-17 09:59:03
+ * @LastEditTime: 2022-11-28 22:00:44
  * @FilePath: /matias-pinia-persisted-state/src/pinia/useAuthUserStore.ts
  * @Description: 用户权限store
  */

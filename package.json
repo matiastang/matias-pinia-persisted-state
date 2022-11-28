@@ -43,6 +43,7 @@
     },
     "homepage": "https://github.com/matiastang/vue-scaffold#readme",
     "dependencies": {
+        "matias-storage": "^0.1.0",
         "pinia": "^2.0.23"
     },
     "devDependencies": {

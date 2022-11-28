@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2021-12-13 10:12:56
  * @LastEditors: matiastang
- * @LastEditTime: 2022-11-17 10:26:28
+ * @LastEditTime: 2022-11-28 21:01:39
  * @FilePath: /matias-pinia-persisted-state/README.md
  * @Description: datumwealth-vue-components
 -->
@@ -209,6 +209,7 @@ app.use(pinia)
 
 ### 0.2.0
 
+* `web storage`存储使用[`matias-storage`](https://www.npmjs.com/package/matias-storage)库
 * 添加`custom properties`的缓存
 * 移除`state`中必须包含`stateName`属性的限制，使用`store id`来保存对应的`store`
 * 更新丰富配置项

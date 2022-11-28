@@ -39,6 +39,7 @@ specifiers:
   inquirer: 8.2.0
   less: ^4.1.2
   matias-pinia-persisted-state: ^0.1.7
+  matias-storage: ^0.1.0
   microbundle: ^0.14.2
   minimist: ^1.2.5
   object-hash: ^2.2.0
@@ -73,7 +74,8 @@ specifiers:
   vue3-json-view: ^1.3.2
 
 dependencies:
-  pinia: registry.npmmirror.com/pinia/2.0.23_mgnvym7yiazkylwwogi5r767ue
+  matias-storage: registry.npmmirror.com/matias-storage/0.1.0
+  pinia: registry.npmmirror.com/pinia/2.0.24_mgnvym7yiazkylwwogi5r767ue
 
 devDependencies:
   '@element-plus/icons': registry.npmmirror.com/@element-plus/icons/0.0.11
@@ -1853,7 +1855,7 @@ packages:
     dependencies:
       '@babel/core': registry.npmmirror.com/@babel/core/7.20.2
       '@babel/helper-plugin-utils': registry.npmmirror.com/@babel/helper-plugin-utils/7.20.2
-      regenerator-transform: registry.npmmirror.com/regenerator-transform/0.15.0
+      regenerator-transform: registry.npmmirror.com/regenerator-transform/0.15.1
     dev: true
 
   registry.npmmirror.com/@babel/plugin-transform-reserved-words/7.18.6_@babel+core@7.20.2:
@@ -2123,7 +2125,7 @@ packages:
     version: 7.20.1
     engines: {node: '>=6.9.0'}
     dependencies:
-      regenerator-runtime: registry.npmmirror.com/regenerator-runtime/0.13.10
+      regenerator-runtime: registry.npmmirror.com/regenerator-runtime/0.13.11
     dev: true
 
   registry.npmmirror.com/@babel/template/7.18.10:
@@ -2225,7 +2227,7 @@ packages:
       ajv: registry.npmmirror.com/ajv/6.12.6
       debug: registry.npmmirror.com/debug/4.3.4
       espree: registry.npmmirror.com/espree/9.4.1
-      globals: registry.npmmirror.com/globals/13.17.0
+      globals: registry.npmmirror.com/globals/13.18.0
       ignore: registry.npmmirror.com/ignore/5.2.0
       import-fresh: registry.npmmirror.com/import-fresh/3.3.0
       js-yaml: registry.npmmirror.com/js-yaml/4.1.0
@@ -7488,7 +7490,6 @@ packages:
     name: errno
     version: 0.1.8
     hasBin: true
-    requiresBuild: true
     dependencies:
       prr: registry.npmmirror.com/prr/1.0.1
     dev: true
@@ -8249,7 +8250,7 @@ packages:
       file-entry-cache: registry.npmmirror.com/file-entry-cache/6.0.1
       find-up: registry.npmmirror.com/find-up/5.0.0
       glob-parent: registry.npmmirror.com/glob-parent/6.0.2
-      globals: registry.npmmirror.com/globals/13.17.0
+      globals: registry.npmmirror.com/globals/13.18.0
       grapheme-splitter: registry.npmmirror.com/grapheme-splitter/1.0.4
       ignore: registry.npmmirror.com/ignore/5.2.0
       import-fresh: registry.npmmirror.com/import-fresh/3.3.0
@@ -9664,10 +9665,10 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  registry.npmmirror.com/globals/13.17.0:
-    resolution: {integrity: sha512-1C+6nQRb1GwGMKm2dH/E7enFAMxGTmGI7/dEdhy/DNelv85w9B72t3uc5frtMNXIbzrarJJ/lTCjcaZwbLJmyw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/globals/-/globals-13.17.0.tgz}
+  registry.npmmirror.com/globals/13.18.0:
+    resolution: {integrity: sha512-/mR4KI8Ps2spmoc0Ulu9L7agOF0du1CZNQ3dke8yItYlyKNmGrkONemBbd6V8UTc1Wgcqn21t3WYB7dbRmh6/A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/globals/-/globals-13.18.0.tgz}
     name: globals
-    version: 13.17.0
+    version: 13.18.0
     engines: {node: '>=8'}
     dependencies:
       type-fest: registry.npmmirror.com/type-fest/0.20.2
@@ -9846,7 +9847,6 @@ packages:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graceful-fs/-/graceful-fs-4.2.10.tgz}
     name: graceful-fs
     version: 4.2.10
-    requiresBuild: true
     dev: true
 
   registry.npmmirror.com/graceful-readlink/1.0.1:
@@ -12006,7 +12006,7 @@ packages:
       image-size: registry.npmmirror.com/image-size/0.5.5
       make-dir: registry.npmmirror.com/make-dir/2.1.0
       mime: registry.npmmirror.com/mime/1.6.0
-      needle: registry.npmmirror.com/needle/3.1.0
+      needle: registry.npmmirror.com/needle/3.2.0
       source-map: registry.npmmirror.com/source-map/0.6.1
     transitivePeerDependencies:
       - supports-color
@@ -12589,7 +12589,6 @@ packages:
     name: make-dir
     version: 2.1.0
     engines: {node: '>=6'}
-    requiresBuild: true
     dependencies:
       pify: registry.npmmirror.com/pify/4.0.1
       semver: registry.npmmirror.com/semver/5.7.1
@@ -12668,12 +12667,18 @@ packages:
     name: matias-pinia-persisted-state
     version: 0.1.8
     dependencies:
-      pinia: registry.npmmirror.com/pinia/2.0.23_mgnvym7yiazkylwwogi5r767ue
+      pinia: registry.npmmirror.com/pinia/2.0.24_mgnvym7yiazkylwwogi5r767ue
     transitivePeerDependencies:
       - '@vue/composition-api'
       - typescript
       - vue
     dev: true
+
+  registry.npmmirror.com/matias-storage/0.1.0:
+    resolution: {integrity: sha512-XFBfNf+rptlE6LbN77SktE0e8tDwHS26ietLgVIxSGDuayy1n1g2XorNKXbXkg5AJ2M7tFnUH8jQByalQBp0xw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/matias-storage/-/matias-storage-0.1.0.tgz}
+    name: matias-storage
+    version: 0.1.0
+    dev: false
 
   registry.npmmirror.com/maxmin/2.1.0:
     resolution: {integrity: sha512-NWlApBjW9az9qRPaeg7CX4sQBWwytqz32bIEo1PW9pRW+kBP9KLRfJO3UC+TV31EcQZEUq7eMzikC7zt3zPJcw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/maxmin/-/maxmin-2.1.0.tgz}
@@ -12917,7 +12922,6 @@ packages:
     version: 1.6.0
     engines: {node: '>=4'}
     hasBin: true
-    requiresBuild: true
     dev: true
 
   registry.npmmirror.com/mime/2.6.0:
@@ -13220,10 +13224,10 @@ packages:
     version: 1.4.0
     dev: true
 
-  registry.npmmirror.com/needle/3.1.0:
-    resolution: {integrity: sha512-gCE9weDhjVGCRqS8dwDR/D3GTAeyXLXuqp7I8EzH6DllZGXSUyxuqqLh+YX9rMAWaaTFyVAg6rHGL25dqvczKw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/needle/-/needle-3.1.0.tgz}
+  registry.npmmirror.com/needle/3.2.0:
+    resolution: {integrity: sha512-oUvzXnyLiVyVGoianLijF9O/RecZUf7TkBfimjGrLM4eQhXyeJwM6GeAWccwfQ9aa4gMCZKqhAOuLaMIcQxajQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/needle/-/needle-3.2.0.tgz}
     name: needle
-    version: 3.1.0
+    version: 3.2.0
     engines: {node: '>= 4.4.x'}
     hasBin: true
     requiresBuild: true
@@ -14360,11 +14364,11 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  registry.npmmirror.com/pinia/2.0.23_mgnvym7yiazkylwwogi5r767ue:
-    resolution: {integrity: sha512-N15hFf4o5STrxpNrib1IEb1GOArvPYf1zPvQVRGOO1G1d74Ak0J0lVyalX/SmrzdT4Q0nlEFjbURsmBmIGUR5Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia/-/pinia-2.0.23.tgz}
-    id: registry.npmmirror.com/pinia/2.0.23
+  registry.npmmirror.com/pinia/2.0.24_mgnvym7yiazkylwwogi5r767ue:
+    resolution: {integrity: sha512-DDLd4Iphyc+6PYYYbx7jkb6WP9gecgu9bz9huyB5rb7CdJI3DhzYiZI+/Ih8MLewRrP9DSpslF/BgSNrJtZU7A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia/-/pinia-2.0.24.tgz}
+    id: registry.npmmirror.com/pinia/2.0.24
     name: pinia
-    version: 2.0.23
+    version: 2.0.24
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
@@ -15953,16 +15957,16 @@ packages:
     version: 1.4.2
     dev: true
 
-  registry.npmmirror.com/regenerator-runtime/0.13.10:
-    resolution: {integrity: sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regenerator-runtime/-/regenerator-runtime-0.13.10.tgz}
+  registry.npmmirror.com/regenerator-runtime/0.13.11:
+    resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz}
     name: regenerator-runtime
-    version: 0.13.10
+    version: 0.13.11
     dev: true
 
-  registry.npmmirror.com/regenerator-transform/0.15.0:
-    resolution: {integrity: sha512-LsrGtPmbYg19bcPHwdtmXwbW+TqNvtY4riE3P83foeHRroMbH6/2ddFBfab3t7kbzc7v7p4wbkIecHImqt0QNg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regenerator-transform/-/regenerator-transform-0.15.0.tgz}
+  registry.npmmirror.com/regenerator-transform/0.15.1:
+    resolution: {integrity: sha512-knzmNAcuyxV+gQCufkYcvOqX/qIIfHLv0u5x79kRxuGojfYVky1f15TzZEu2Avte8QGepvUNTnLskf8E6X6Vyg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regenerator-transform/-/regenerator-transform-0.15.1.tgz}
     name: regenerator-transform
-    version: 0.15.0
+    version: 0.15.1
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.20.1
     dev: true

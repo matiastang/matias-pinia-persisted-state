@@ -2,7 +2,7 @@
  * @Author: matiastang
  * @Date: 2022-03-18 17:27:11
  * @LastEditors: matiastang
- * @LastEditTime: 2022-11-17 09:58:57
+ * @LastEditTime: 2022-11-28 22:00:48
  * @FilePath: /matias-pinia-persisted-state/src/pinia/useTest.ts
  * @Description:
  */
